@@ -8,7 +8,7 @@
 ############################################################
 
 # Start in daemon (background) mode and release terminal (default: off)
-daemon on
+daemon off
 
 # File to store the process ID, also called pid file. (default: not defined)
 process_id_file /var/run/motion/motion.pid
@@ -65,7 +65,7 @@ videodevice /dev/video0
 # V4L2_PIX_FMT_YUV422P : 16 '422P'
 # V4L2_PIX_FMT_YUV420  : 17 'YU12'
 #
-v4l2_palette 17
+v4l2_palette 8
 
 # Tuner device to be used for capturing using tuner as source (default /dev/tuner0)
 # This is ONLY used for FreeBSD. Leave it commented out for Linux
@@ -474,7 +474,7 @@ stream_motion off
 stream_maxrate 1
 
 # Restrict stream connections to localhost only (default: on)
-stream_localhost on
+stream_localhost off
 
 # Limits the number of images per connection (default: 0 = unlimited)
 # Number can be defined by multiplying actual stream rate by desired number of seconds
@@ -606,7 +606,7 @@ quiet on
 
 # Command to be executed when an event ends after a period of no motion
 # (default: none). The period of no motion is defined by option event_gap.
-; on_event_end value
+on_event_end value /usr/local/bin/on_event_end.sh
 
 # Command to be executed when a picture (.ppm|.jpg) is saved (default: none)
 # To give the filename as an argument to a command append it with %f

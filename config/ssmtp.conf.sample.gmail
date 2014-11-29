@@ -1,0 +1,9 @@
+# Settings for Gmail SMTP service
+mailhub=smtp.gmail.com:587
+hostname=smtp.gmail.com:587
+UseSTARTTLS=YES
+
+# Your Gmail account
+root=CHANGEME@gmail.com
+AuthUser=CHANGEME@gmail.com
+AuthPass=CHANGEME

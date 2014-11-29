@@ -11,7 +11,6 @@ RUN apt-get update && apt-get install -q -y --no-install-recommends \
 # Copy config files and scripts
 COPY config/motion.conf /etc/motion/motion.conf
 COPY config/ssmtp.conf /etc/ssmtp/ssmtp.conf
-COPY config/revaliases /etc/ssmtp/revaliases
 COPY script/* /usr/local/bin/ 
 
 EXPOSE 8081
