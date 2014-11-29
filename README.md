@@ -13,9 +13,10 @@ cd motion-detector
 
 Copy the sample config files and change everything you need:
 ```bash
+# Change settings to be suited for your webcam
 cp config/motion.conf.sample config/motion.conf
-cp config/ssmtp.conf.sample config/ssmtp.conf
-cp config/revaliases.sample config/revaliases
+# If using Gmail, just copy the sample then change account and password
+cp config/ssmtp.conf.sample.gmail config/ssmtp.conf
 ```
 
 Then build your own motion-detector Docker image:
