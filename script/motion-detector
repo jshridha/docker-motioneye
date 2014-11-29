@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Check necessary settings
+if [ -z "${MAILTO}"]; then
+    echo "The \$MAILTO environment variable not set!"
+    exit 1
+fi
+
+# Set the correct timezone
+if [ -n "${TIMEZONE}" ]; then
+    cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
+fi
+
+# Set the sender's name in notify email
+echo 'set realname="Motion Detector"' > /root/.muttrc
+
+# Run motion
+exec motion
