@@ -3,6 +3,11 @@
 A surveillance solution base on
 [Motion](http://www.lavrsen.dk/foswiki/bin/view/Motion/WebHome) and Docker.
 
+It's easy and ready to use:
+  - Plug in a webcam and run motion-detector. Videos and images will be saved
+    once a motion is detected.
+  - Notification e-mail will be sent.
+
 ## Quick Start
 
 Clone this project then `cd` into it:
@@ -40,7 +45,13 @@ Note that:
   - The `TIMEZONE` environment variable is for correct time stamp when motion
     detected. Check `/usr/share/zoneinfo` or see the [full list of time
     zones](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
-  - All alarm mails will be send to the email address provided by `MAILTO`.
+  - All alarm mails will be send to the e-mail address provided by `MAILTO`.
     Please make sure you set up this correctly.
   - Mount a volume to `/var/lib/motion` for container since there might be lots
     of images and videos produced by Motion.
+
+## Customization
+
+There are many types of hook can be set in Motion. For instance,
+motion-detector just provides an e-mail notification script as the
+`on_event_end` hook. Please dig into `motion.conf` and define your own hooks.
