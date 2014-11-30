@@ -11,6 +11,15 @@ if [ -n "${TIMEZONE}" ]; then
     cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 fi
 
+# Override configs in motion.conf
+if [ -n "${MOTION_PIXELS}" ]; then
+    IFS='x' read -a wxh<<< "${MOTION_PIXELS}"
+    $WIDTH=${wxh[0]}
+    $HEIGHT=${wxh[1]}
+    sed -i "s/^width\s[0-9]\+/width ${WIDTH}/g" motion.conf
+    sed -i "s/^height\s[0-9]\+/height ${HEIGHT}/g" motion.conf
+fi
+
 # Set the sender's name in notify email
 echo 'set realname="Motion Detector"' > /root/.muttrc
 

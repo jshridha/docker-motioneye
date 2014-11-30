@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# TODO: The file naming used here is the default of Motion, will fail if user changed that.
+# TODO: The wildcard matching used here may produce bug when same event ID is exists.
+
 set -e
 
 # Set attachment file size limit to 20MB
@@ -18,7 +21,6 @@ if [ "${VIDEO_FILE_BYTES}" -lt "${ATTACHMENT_BYTES_LIMIT}" ]; then
     # Select a random image as the preview of video
     PREVIEW=$(files=(${EVENT}-*.jpg); printf "%s" "${files[RANDOM % ${#files[@]}]}")
     # Attach the video and the preview image
-    # TODO: the wildcard matching here may produce bug for same event ID
     ATTACHMENT="${PREVIEW} ${EVENT}-*.avi"
     echo -e "${BODY}" | mutt ${MAILTO} -s "${SUBJECT}" -a ${ATTACHMENT}
 else
