@@ -64,3 +64,11 @@ There are some environment variables can be supplied at run time:
 There are many types of hook can be set in Motion. For instance,
 motion-detector just provides an e-mail notification script as the
 `on_event_end` hook. Please dig into `motion.conf` and define your own hooks.
+
+## Caution
+
+If you have specified your Gmail account information in `config/ssmtp.conf` and
+built an image. Please **don't** push it to a public hub. Instead of embedding
+sensitive information to Docker image, I would suggest mount those config files
+to container at run time, e.g., add `-v $PWD/ssmtp.conf:/etc/ssmtp/ssmtp.conf`
+when running motion-detector.
