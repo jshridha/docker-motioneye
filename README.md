@@ -3,10 +3,10 @@
 A surveillance solution base on
 [Motion](http://www.lavrsen.dk/foswiki/bin/view/Motion/WebHome) and Docker.
 
-It's easy and ready to use:
-  - Plug in a webcam and run motion-detector. Videos and images will be saved
-    once a motion is detected.
-  - Notification e-mail will be sent.
+It's easy and ready to use. Just plug in a webcam and run motion-detector, then
+videos and images will be saved once a motion is detected as well as a
+notification e-mail including the recorded video and a preview image will be
+sent.
 
 ## Quick Start
 

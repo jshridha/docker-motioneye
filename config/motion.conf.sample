@@ -606,7 +606,7 @@ quiet on
 
 # Command to be executed when an event ends after a period of no motion
 # (default: none). The period of no motion is defined by option event_gap.
-on_event_end value /usr/local/bin/on_event_end.sh
+on_event_end value /usr/local/bin/on_event_end.sh %v
 
 # Command to be executed when a picture (.ppm|.jpg) is saved (default: none)
 # To give the filename as an argument to a command append it with %f
