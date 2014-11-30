@@ -48,9 +48,7 @@ Note that:
   - Mount a volume to `/var/lib/motion` for container since there might be lots
     of images and videos produced by Motion.
 
-## Customization
-
-### Runtime Configs by Environment variables
+## Runtime Configs
 
 There are some environment variables can be supplied at run time:
   - `TIMEZONE` is for correct time stamp when motion detected. Check
@@ -61,7 +59,7 @@ There are some environment variables can be supplied at run time:
   - `MAILTO` to specify who will receive the alarm e-mails. Please make sure
     you set up this correctly.
 
-### Hooks
+## Hooks
 
 There are many types of hook can be set in Motion. For instance,
 motion-detector just provides an e-mail notification script as the
