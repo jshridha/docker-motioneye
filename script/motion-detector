@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check necessary settings
-if [ -z "${MAILTO}"]; then
+if [ -z "${MAILTO}" ]; then
     echo "The \$MAILTO environment variable not set!"
     exit 1
 fi
@@ -13,11 +13,12 @@ fi
 
 # Override configs in motion.conf
 if [ -n "${MOTION_PIXELS}" ]; then
+    echo "Set capture size to ${MOTION_PIXELS}"
     IFS='x' read -a wxh<<< "${MOTION_PIXELS}"
-    $WIDTH=${wxh[0]}
-    $HEIGHT=${wxh[1]}
-    sed -i "s/^width\s[0-9]\+/width ${WIDTH}/g" motion.conf
-    sed -i "s/^height\s[0-9]\+/height ${HEIGHT}/g" motion.conf
+    WIDTH=${wxh[0]}
+    HEIGHT=${wxh[1]}
+    sed -i "s/^width\s[0-9]\+/width ${WIDTH}/g" /etc/motion/motion.conf
+    sed -i "s/^height\s[0-9]\+/height ${HEIGHT}/g" /etc/motion/motion.conf
 fi
 
 # Set the sender's name in notify email
