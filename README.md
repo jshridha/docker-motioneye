@@ -43,7 +43,7 @@ Note that:
   - The `privileged` flag is for the control of `/dev/video0`.
   - Expose port 8081 so that you can watch the live streaming, e.g., `vlc
     http://localhost:8081`.
-  - Set `TIMEZONE` to `Asia/Taipei`.
+  - Set `TIMEZONE` to `Asia/Taipei` instead of using UTC time.
   - All alarm mails will be send to the e-mail address provided by `MAILTO`.
   - Mount a volume to `/var/lib/motion` for container since there might be lots
     of images and videos produced by Motion.
@@ -54,10 +54,12 @@ There are some environment variables can be supplied at run time:
   - `TIMEZONE` is for correct time stamp when motion detected. Check
     `/usr/share/zoneinfo` or see the [full list of time
     zones](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
-  - `MOTION_PIXELS` to specify the capture size of image, e.g., `1280x720`.
-    Note that the size must be supported by your webcam.
   - `MAILTO` to specify who will receive the alarm e-mails. Please make sure
     you set up this correctly.
+
+Settings in `motion.conf` can be overridden:
+  - `MOTION_PIXELS` to specify the capture size of image, e.g., `1280x720`.
+    Note that the size must be supported by your webcam.
 
 ## Hooks
 
