@@ -10,7 +10,7 @@ if [ -n "${TIMEZONE}" ]; then
     cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 fi
 
-# Override configs in motion.conf
+# Override capture size for Motion
 if [ -n "${MOTION_PIXELS}" ]; then
     echo "Set capture size to ${MOTION_PIXELS}"
     IFS='x' read -a wxh<<< "${MOTION_PIXELS}"
@@ -19,6 +19,12 @@ if [ -n "${MOTION_PIXELS}" ]; then
     sed -i "s/^width\s[0-9]\+/width ${WIDTH}/g" /etc/motion/motion.conf
     sed -i "s/^height\s[0-9]\+/height ${HEIGHT}/g" /etc/motion/motion.conf
 fi
+
+# Override threshold, event_gap for Motion
+[ -n "${MOTION_THRESHOLD}" ] && \
+    sed -i "s/^threshold\s[0-9]\+/threshold ${MOTION_THRESHOLD}/g" /etc/motion/motion.conf
+[ -n "${MOTION_EVENT_GAP}" ] && \
+    sed -i "s/^event_gap\s[0-9]\+/event_gap ${MOTION_EVENT_GAP}/g" /etc/motion/motion.conf
 
 # Set the sender's name in notify email
 echo 'set realname="Motion Detector"' > /root/.muttrc
