@@ -79,7 +79,7 @@ when running motion-detector.
 ## Screenshots
 
 - E-mail Notification
-![Image](.screenshots/scrot1.png?raw=true)
+![Image](.screenshots/scrot1.jpg?raw=true)
 
 - HTTP Live Streaming
-![Image](.screenshots/scrot2.png?raw=true)
+![Image](.screenshots/scrot2.jpg?raw=true)
