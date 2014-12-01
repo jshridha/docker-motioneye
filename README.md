@@ -4,10 +4,9 @@ A surveillance solution base on
 [Motion](http://www.lavrsen.dk/foswiki/bin/view/Motion/WebHome) and Docker.
 
 It's easy and ready to use. Just plug in a webcam and run motion-detector, then
-videos and images will be saved once a motion is detected as well as a
-notification e-mail including the recorded video and a preview image will be
-sent. On top of that, the webcam can be accessed anytime via HTTP live
-streaming.
+videos and images will be saved once a motion is detected while a notification
+e-mail including the recorded video and a preview image will be sent. On top of
+that, the webcam can be accessed anytime via HTTP lives streaming.
 
 ## Quick Start
 
@@ -44,7 +43,7 @@ Note that:
   - Expose port 8081 so that you can watch the live streaming, e.g., `vlc
     http://localhost:8081`.
   - Set `TIMEZONE` to `Asia/Taipei` instead of using UTC time.
-  - All alarm mails will be send to the e-mail address provided by `MAILTO`.
+  - All alarm mails will be sent to the e-mail address provided by `MAILTO`.
   - Mount a volume to `/var/lib/motion` for container since there might be lots
     of images and videos produced by Motion.
 
@@ -76,3 +75,11 @@ built an image. Please **don't** push it to a public hub. Instead of embedding
 sensitive information to Docker image, I would suggest mount those config files
 to container at run time, e.g., add `-v $PWD/ssmtp.conf:/etc/ssmtp/ssmtp.conf`
 when running motion-detector.
+
+## Screenshots
+
+- E-mail Notification
+![Image](.screenshots/scrot1.png?raw=true)
+
+- HTTP Live Streaming
+![Image](.screenshots/scrot2.png?raw=true)
