@@ -2,6 +2,7 @@
 mailhub=smtp.gmail.com:587
 hostname=smtp.gmail.com:587
 UseSTARTTLS=YES
+FromLineOverride=YES
 
 # Your Gmail account
 root=CHANGEME@gmail.com
