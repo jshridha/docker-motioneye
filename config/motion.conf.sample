@@ -602,7 +602,7 @@ quiet on
 
 # Command to be executed when an event starts. (default: none)
 # An event starts at first motion detected after a period of no motion defined by event_gap
-; on_event_start value
+on_event_start /usr/local/bin/on_event_start.sh %v
 
 # Command to be executed when an event ends after a period of no motion
 # (default: none). The period of no motion is defined by option event_gap.
