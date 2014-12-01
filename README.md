@@ -60,6 +60,8 @@ There are some environment variables can be supplied at run time:
 Settings in `motion.conf` can be overridden:
   - `MOTION_PIXELS` to specify the capture size of image, e.g., `1280x720`.
     Note that the size must be supported by your webcam.
+  - `MOTION_THRESHOLD` for `threshold`
+  - `MOTION_EVENT_GAP` for `event_gap`
 
 ## Hooks
 
