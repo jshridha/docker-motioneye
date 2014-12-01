@@ -26,6 +26,13 @@ fi
 [ -n "${MOTION_EVENT_GAP}" ] && \
     sed -i "s/^event_gap\s[0-9]\+/event_gap ${MOTION_EVENT_GAP}/g" /etc/motion/motion.conf
 
+# Timelapse mode
+if [ -n "${MOTION_TIMELAPSE}" ]; then
+    sed -i "s/^threshold\s[0-9]\+/threshold 0/g" /etc/motion/motion.conf
+    sed -i "s/^ffmpeg_output_movies off/ffmpeg_output_movies on/g" /etc/motion/motion.conf
+    sed -i "s/^ffmpeg_timelapse\s[0-9]\+/ffmpeg_timelapse ${MOTION_TIMELAPSE}/g" /etc/motion/motion.conf
+fi
+
 # Set the sender's name in notify email
 echo 'set realname="Motion Detector"' > /root/.muttrc
 
