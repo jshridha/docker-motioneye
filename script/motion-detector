@@ -1,9 +1,8 @@
 #!/bin/bash
 
-# Check necessary settings
+# Check e-mail setting
 if [ -z "${MAILTO}" ]; then
-    echo "The \$MAILTO environment variable not set!"
-    exit 1
+    echo "The \$MAILTO environment variable is not set, skip e-mail notification."
 fi
 
 # Set the correct timezone

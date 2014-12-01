@@ -227,7 +227,7 @@ post_capture 0
 # events causing all Motion to be written to one single movie file and no pre_capture.
 # If set to 0, motion is running in gapless mode. Movies don't have gaps anymore. An
 # event ends right after no more motion is detected and post_capture is over.
-event_gap 60
+event_gap 10
 
 # Maximum length in seconds of a movie
 # When value is exceeded a new movie file is created. (Default: 0 = infinite)
@@ -357,7 +357,7 @@ snapshot_interval 0
 # Locate and draw a box around the moving object.
 # Valid values: on, off, preview (default: off)
 # Set to 'preview' will only draw a box in preview_shot pictures.
-locate_motion_mode off
+locate_motion_mode on
 
 # Set the look and style of the locate box if enabled.
 # Valid values: box, redbox, cross, redcross (default: box)
@@ -468,10 +468,10 @@ stream_quality 50
 
 # Output frames at 1 fps when no motion is detected and increase to the
 # rate given by stream_maxrate when motion is detected (default: off)
-stream_motion off
+stream_motion on
 
 # Maximum framerate for stream streams (default: 1)
-stream_maxrate 1
+stream_maxrate 15
 
 # Restrict stream connections to localhost only (default: on)
 stream_localhost off
@@ -606,7 +606,7 @@ quiet on
 
 # Command to be executed when an event ends after a period of no motion
 # (default: none). The period of no motion is defined by option event_gap.
-on_event_end value /usr/local/bin/on_event_end.sh %v
+on_event_end /usr/local/bin/on_event_end.sh %v
 
 # Command to be executed when a picture (.ppm|.jpg) is saved (default: none)
 # To give the filename as an argument to a command append it with %f
