@@ -59,16 +59,17 @@ There are some environment variables can be supplied at run time:
 Settings in `motion.conf` can be overridden:
   - `MOTION_PIXELS` to specify the capture size of image, e.g., `1280x720`.
     Note that the size must be supported by your webcam.
-  - `MOTION_THRESHOLD` for `threshold`
-  - `MOTION_EVENT_GAP` for `event_gap`
+  - `MOTION_THRESHOLD` for `threshold`.
+  - `MOTION_EVENT_GAP` for `event_gap`.
   - `MOTION_TIMELAPSE` for the time-lapse mode, e.g., `600,86400`. Please see
     below for further explanation.
 
 ## The Time-lapse Mode
 
-Using motion-detector to capture time-lapse videos is quite easy. The
-`MOTION_TIMELAPSE` environment variable has two parts, the *interval* and
-*duration*, both in seconds. For instance, if a `-e
+Using motion-detector to capture
+[time-lapse](http://en.wikipedia.org/wiki/Time-lapse_photography) videos is
+quite easy. The `MOTION_TIMELAPSE` environment variable has two parts:
+**interval** and **duration**, both in seconds. For instance, if a `-e
 MOTION_TIMELAPSE="600,86400"` is supplied, Motion will capture images every 10
 minutes within 24 hours. Note that in time-lapse mode, the motion detection
 will be disabled.
@@ -81,6 +82,14 @@ docker run -it --privileged \
     -v /data-store:/var/lib/motion \
     motion-detector
 ```
+Now a weekly time-lapse video will be in `/data-store`.
+
+A cool time-lapse:
+
+![GIF](.screenshots/timelapse.gif?raw=true)
+
+(If you happen to know the author of this time-lapse, please let me know so I
+may source them properly.)
 
 ## Hooks
 
