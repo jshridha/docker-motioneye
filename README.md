@@ -34,7 +34,7 @@ Now run the container as well as feed it with some config variables, e.g.,
 docker run -it --privileged -p 8081:8081 \
     -e TIMEZONE="Asia/Taipei" \
     -e MAILTO="kfei@kfei.net" \
-    -v /storage/motion-detector-vol:/var/lib/motion \
+    -v /data-store:/var/lib/motion \
     motion-detector
 ```
 
@@ -61,6 +61,26 @@ Settings in `motion.conf` can be overridden:
     Note that the size must be supported by your webcam.
   - `MOTION_THRESHOLD` for `threshold`
   - `MOTION_EVENT_GAP` for `event_gap`
+  - `MOTION_TIMELAPSE` for the time-lapse mode, e.g., `600,86400`. Please see
+    below for further explanation.
+
+## The Time-lapse Mode
+
+Using motion-detector to capture time-lapse videos is quite easy. The
+`MOTION_TIMELAPSE` environment variable has two parts, the *interval* and
+*duration*, both in seconds. For instance, if a `-e
+MOTION_TIMELAPSE="600,86400"` is supplied, Motion will capture images every 10
+minutes within 24 hours. Note that in time-lapse mode, the motion detection
+will be disabled.
+
+An example run, for capturing one frame per hour within a week:
+```bash
+docker run -it --privileged \
+    -e MOTION_PIXELS="1280x720" \
+    -e MOTION_TIMELAPSE="3600,604800" \
+    -v /data-store:/var/lib/motion \
+    motion-detector
+```
 
 ## Hooks
 

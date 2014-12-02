@@ -28,9 +28,18 @@ fi
 
 # Timelapse mode
 if [ -n "${MOTION_TIMELAPSE}" ]; then
+    IFS=',' read -a timelapse<<< "${MOTION_TIMELAPSE}"
+    interval=${timelapse[0]}
+    duration=${timelapse[1]}
+    ofile="/tmp/timelapse-start-time.log"
+    # Record the time-lapse start time
+    echo $(date +"%s") > ${ofile}
+    # Send the timer to background
+    /usr/local/bin/timelapse.sh ${ofile} ${interval} ${duration} &
+    # Settings for running Motion on time-lapse mode
     sed -i "s/^threshold\s[0-9]\+/threshold 0/g" /etc/motion/motion.conf
     sed -i "s/^ffmpeg_output_movies off/ffmpeg_output_movies on/g" /etc/motion/motion.conf
-    sed -i "s/^ffmpeg_timelapse\s[0-9]\+/ffmpeg_timelapse ${MOTION_TIMELAPSE}/g" /etc/motion/motion.conf
+    sed -i "s/^ffmpeg_timelapse\s[0-9]\+/ffmpeg_timelapse ${interval}/g" /etc/motion/motion.conf
 fi
 
 # Set the sender's name in notify email
