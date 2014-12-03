@@ -1,9 +1,9 @@
-# motion-detector
+# dockmotion
 
 A surveillance solution base on
 [Motion](http://www.lavrsen.dk/foswiki/bin/view/Motion/WebHome) and Docker.
 
-It's easy and ready to use. Just plug in a webcam and run motion-detector, then
+It's easy and ready to use. Just plug in a webcam and run dockmotion, then
 videos and images will be saved once a motion is detected while a notification
 e-mail including the recorded video and a preview image will be sent. On top of
 that, the webcam can be accessed anytime via HTTP lives streaming.
@@ -12,8 +12,8 @@ that, the webcam can be accessed anytime via HTTP lives streaming.
 
 Clone this project then `cd` into it:
 ```bash
-git clone https://github.com/kfei/motion-detector
-cd motion-detector
+git clone https://github.com/kfei/dockmotion
+cd dockmotion
 ```
 
 Copy the sample config files and change everything you need:
@@ -24,9 +24,9 @@ cp config/motion.conf.sample config/motion.conf
 cp config/ssmtp.conf.sample.gmail config/ssmtp.conf
 ```
 
-Then build your own motion-detector Docker image:
+Then build your own dockmotion Docker image:
 ```bash
-docker build -t motion-detector .
+docker build -t dockmotion .
 ```
 
 Now run the container as well as feed it with some config variables, e.g.,
@@ -35,7 +35,7 @@ docker run -it --privileged -p 8081:8081 \
     -e TIMEZONE="Asia/Taipei" \
     -e MAILTO="kfei@kfei.net" \
     -v /data-store:/var/lib/motion \
-    motion-detector
+    dockmotion
 ```
 
 Note that:
@@ -66,7 +66,7 @@ Settings in `motion.conf` can be overridden:
 
 ## The Time-lapse Mode
 
-Using motion-detector to capture
+Using dockmotion to capture
 [time-lapse](http://en.wikipedia.org/wiki/Time-lapse_photography) videos is
 quite easy. The `MOTION_TIMELAPSE` environment variable has two parts:
 **interval** and **duration**, both in seconds. For instance, if a `-e
@@ -80,7 +80,7 @@ docker run -it --privileged \
     -e MOTION_PIXELS="1280x720" \
     -e MOTION_TIMELAPSE="3600,604800" \
     -v /data-store:/var/lib/motion \
-    motion-detector
+    dockmotion
 ```
 Now a weekly time-lapse video will be in `/data-store`.
 
@@ -94,8 +94,8 @@ may source them properly.)
 ## Hooks
 
 There are many types of hook can be set in Motion. For instance,
-motion-detector just provides an e-mail notification script as the
-`on_event_end` hook. Please dig into `motion.conf` and define your own hooks.
+dockmotion just provides an e-mail notification script as the `on_event_end`
+hook. Please dig into `motion.conf` and define your own hooks.
 
 ## Caution
 
@@ -103,7 +103,7 @@ If you have specified your Gmail account information in `config/ssmtp.conf` and
 built an image. Please **don't** push it to a public hub. Instead of embedding
 sensitive information to Docker image, I would suggest mount those config files
 to container at run time, e.g., add `-v $PWD/ssmtp.conf:/etc/ssmtp/ssmtp.conf`
-when running motion-detector.
+when running dockmotion.
 
 ## Screenshots
 

@@ -19,4 +19,4 @@ VOLUME ["/var/lib/motion"]
  
 WORKDIR /var/lib/motion
  
-ENTRYPOINT ["/usr/local/bin/motion-detector"]
+ENTRYPOINT ["/usr/local/bin/dockmotion"]
