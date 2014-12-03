@@ -18,7 +18,7 @@ cd dockmotion
 
 Copy the sample config files and change everything you need:
 ```bash
-# Change settings to be suited for your webcam
+# Change settings to suit your webcam, e.g., videodevice, v4l2_palette, etc.
 cp config/motion.conf.sample config/motion.conf
 # If using Gmail, just copy the sample then change account and password
 cp config/ssmtp.conf.sample.gmail config/ssmtp.conf
@@ -39,7 +39,7 @@ docker run -it --privileged -p 8081:8081 \
 ```
 
 Note that:
-  - The `privileged` flag is for the control of `/dev/video0`.
+  - The `privileged` flag is for the control of `/dev/videoX`.
   - Expose port 8081 so that you can watch the live streaming, e.g., `vlc
     http://localhost:8081`.
   - Set `TIMEZONE` to `Asia/Taipei` instead of using UTC time.
