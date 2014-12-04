@@ -6,7 +6,7 @@ A surveillance solution base on
 It's easy and ready to use. Just plug in a webcam and run dockmotion, then
 videos and images will be saved once a motion is detected while a notification
 e-mail including the recorded video and a preview image will be sent. On top of
-that, the webcam can be accessed anytime via HTTP lives streaming.
+that, the webcam can be accessed anytime via HTTP live streaming.
 
 ## Quick Start
 
