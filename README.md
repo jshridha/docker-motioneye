@@ -31,7 +31,8 @@ docker build -t dockmotion .
 
 Now run the container as well as feed it with some config variables, e.g.,
 ```bash
-docker run -it --privileged -p 8081:8081 \
+docker run -it --device=/dev/video0
+    -p 8081:8081 \
     -e TIMEZONE="Asia/Taipei" \
     -e MAILTO="kfei@kfei.net" \
     -v /data-store:/var/lib/motion \
@@ -39,7 +40,7 @@ docker run -it --privileged -p 8081:8081 \
 ```
 
 Note that:
-  - The `privileged` flag is for the control of `/dev/videoX`.
+  - The `--device` flag should be replaced by your webcam's device ID.
   - Expose port 8081 so that you can watch the live streaming, e.g., `vlc
     http://localhost:8081`.
   - Set `TIMEZONE` to `Asia/Taipei` instead of using UTC time.
