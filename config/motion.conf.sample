@@ -25,7 +25,7 @@ setup_mode off
 ;logfile /tmp/motion.log
 
 # Level of log messages [1..9] (EMR, ALR, CRT, ERR, WRN, NTC, INF, DBG, ALL). (default: 6 / NTC)
-log_level 6
+log_level 7
 
 # Filter to log messages by type (COR, STR, ENC, NET, DBL, EVT, TRK, VID, ALL). (default: ALL)
 log_type all
@@ -87,14 +87,14 @@ frequency 0
 rotate 0
 
 # Image width (pixels). Valid range: Camera dependent, default: 352
-width 320
+width 640
 
 # Image height (pixels). Valid range: Camera dependent, default: 288
-height 240
+height 480
 
 # Maximum number of frames to be captured per second.
 # Valid range: 2-100. Default: 100 (almost no limit).
-framerate 2
+framerate 10
 
 # Minimum time in seconds between capturing picture frames from the camera.
 # Default: 0 = disabled - the capture rate is given by the camera framerate.
@@ -247,7 +247,7 @@ emulate_motion off
 # Picture with most motion of an event is saved when set to 'best'.
 # Picture with motion nearest center of picture is saved when set to 'center'.
 # Can be used as preview shot for the corresponding movie.
-output_pictures on
+output_pictures center
 
 # Output pictures with only the pixels moving object (ghost images) (default: off)
 output_debug_pictures off
@@ -267,7 +267,7 @@ picture_type jpeg
 ############################################################
 
 # Use ffmpeg to encode movies in realtime (default: off)
-ffmpeg_output_movies on
+ffmpeg_output_movies off
 
 # Use ffmpeg to make movies with only the pixels moving
 # object (ghost images) (default: off)
@@ -325,11 +325,11 @@ sdl_threadnr 0
 #############################################################
 
 # Bool to enable or disable extpipe (default: off)
-use_extpipe off
+use_extpipe on
 
 # External program (full path and opts) to pipe raw video to
 # Generally, use '-' for STDIN...
-;extpipe mencoder -demuxer rawvideo -rawvideo w=320:h=240:i420 -ovc x264 -x264encopts bframes=4:frameref=1:subq=1:scenecut=-1:nob_adapt:threads=1:keyint=1000:8x8dct:vbv_bufsize=4000:crf=24:partitions=i8x8,i4x4:vbv_maxrate=800:no-chroma-me -vf denoise3d=16:12:48:4,pp=lb -of   avi -o %f.avi - -fps %fps
+extpipe x264 - --input-res 640x480 --fps %fps --bitrate 1500 --preset ultrafast --quiet -o %f.mp4
 
 
 
