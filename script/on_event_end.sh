@@ -11,7 +11,7 @@ ATTACHMENT_BYTES_LIMIT=20971520
 EVENT=$1
 IMAGE_FILE_BYTES=$(find . -name "${EVENT}-*.jpg" -ls | awk '{total += $7} END {print total}')
 IMAGE_FILE_SIZE=$(numfmt --to=iec-i --suffix=B ${IMAGE_FILE_BYTES})
-VIDEO_FILE_BYTES=$(find . -name "${EVENT}-*.avi" -ls | awk '{total += $7} END {print total}')
+VIDEO_FILE_BYTES=$(find . -name "${EVENT}-*.mp4" -ls | awk '{total += $7} END {print total}')
 VIDEO_FILE_SIZE=$(numfmt --to=iec-i --suffix=B ${VIDEO_FILE_BYTES})
 
 TIMESTAMP=$(date)
@@ -35,7 +35,7 @@ if [ "${VIDEO_FILE_BYTES}" -lt "${ATTACHMENT_BYTES_LIMIT}" ]; then
     # Select a random image as the preview of video
     PREVIEW=$(files=(${EVENT}-*.jpg); printf "%s" "${files[RANDOM % ${#files[@]}]}")
     # Attach the video and the preview image
-    ATTACHMENT="${PREVIEW} ${EVENT}-*.avi"
+    ATTACHMENT="${PREVIEW} ${EVENT}-*.mp4"
     echo -e "${BODY}" | mutt ${MAILTO} -s "${SUBJECT}" -a ${ATTACHMENT}
 else
     BODY="${BODY}File size is too big for a e-mail attachment, please check it out on the server.\n"
@@ -43,3 +43,5 @@ else
 fi
 
 echo "Notification mail has been sent! (event: ${EVENT})"
+
+rm -f ${EVENT}-start-time.log >/dev/null 2>&1

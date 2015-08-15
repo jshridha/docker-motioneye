@@ -6,7 +6,8 @@ RUN apt-get update && apt-get install -q -y --no-install-recommends \
     bsd-mailx \
     motion \
     mutt \
-    ssmtp
+    ssmtp \
+    x264
 
 # Copy config files and scripts
 COPY config/motion.conf /etc/motion/motion.conf
