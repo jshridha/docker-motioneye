@@ -16,26 +16,37 @@ git clone https://github.com/kfei/dockmotion
 cd dockmotion
 ```
 
-Copy the sample config files and change everything you need:
-```bash
-# Change settings to suit your webcam, e.g., videodevice, v4l2_palette, etc.
-cp config/motion.conf.sample config/motion.conf
-# If using Gmail, just copy the sample then change account and password
-cp config/ssmtp.conf.sample.gmail config/ssmtp.conf
-```
+### Build or pull the image
 
 Then build your own dockmotion Docker image:
 ```bash
 docker build -t dockmotion .
 ```
 
-Now run the container as well as feed it with some config variables, e.g.,
+Note that a pre-built image is also available:
+```bash
+docker pull kfei/dockmotion
+```
+
+### Custom settings
+
+Modify the [sample](config/motion.conf?raw=true) `motion.conf` to
+suit your webcam, e.g., videodevice, v4l2_palette, etc.
+
+If using Gmail, change account and password settings in the
+[sample](config/ssmtp.conf.gmail?raw=true) and save it as `ssmtp.conf`.
+
+### Run
+
+Run the container with configs , e.g.,
 ```bash
 docker run -it --device=/dev/video0
     -p 8081:8081 \
     -e TIMEZONE="Asia/Taipei" \
     -e MAILTO="kfei@kfei.net" \
     -v /data-store:/var/lib/motion \
+    -v /path/to/motion.conf:/etc/motion/motion.conf \
+    -v /path/to/ssmtp.conf:/etc/ssmtp/ssmtp.conf \
     dockmotion
 ```
 
@@ -77,10 +88,11 @@ will be disabled.
 
 An example run, for capturing one frame per hour within a week:
 ```bash
-docker run -it --privileged \
+docker run -it --device=/dev/video0
     -e MOTION_PIXELS="1280x720" \
     -e MOTION_TIMELAPSE="3600,604800" \
     -v /data-store:/var/lib/motion \
+    -v /path/to/motion.conf:/etc/motion/motion.conf \
     dockmotion
 ```
 Now a weekly time-lapse video will be in `/data-store`.
@@ -97,14 +109,6 @@ may source them properly.)
 There are many types of hook can be set in Motion. For instance,
 dockmotion just provides an e-mail notification script as the `on_event_end`
 hook. Please dig into `motion.conf` and define your own hooks.
-
-## Caution
-
-If you have specified your Gmail account information in `config/ssmtp.conf` and
-built an image. Please **don't** push it to a public hub. Instead of embedding
-sensitive information to Docker image, I would suggest mount those config files
-to container at run time, e.g., add `-v $PWD/ssmtp.conf:/etc/ssmtp/ssmtp.conf`
-when running dockmotion.
 
 ## Screenshots
 

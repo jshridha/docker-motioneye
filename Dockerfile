@@ -9,9 +9,7 @@ RUN apt-get update && apt-get install -q -y --no-install-recommends \
     ssmtp \
     x264
 
-# Copy config files and scripts
-COPY config/motion.conf /etc/motion/motion.conf
-COPY config/ssmtp.conf /etc/ssmtp/ssmtp.conf
+# Copy and scripts
 COPY script/* /usr/local/bin/ 
 
 EXPOSE 8081
