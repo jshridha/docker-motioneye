@@ -7,7 +7,8 @@ RUN apt-get update && apt-get install -q -y --no-install-recommends \
     motion \
     mutt \
     ssmtp \
-    x264
+    x264 \
+	supervisor
 
 # Copy and scripts
 COPY script/* /usr/local/bin/ 
