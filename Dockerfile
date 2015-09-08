@@ -30,6 +30,8 @@ ADD config/ /config_orig
 EXPOSE 8081
  
 VOLUME ["/var/lib/motion"]
+
+VOLUME ["/config"]
  
 WORKDIR /var/lib/motion
 
