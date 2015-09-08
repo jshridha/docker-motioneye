@@ -20,6 +20,10 @@ fi
 chown -R nobody:users /config
 chmod -R 775 /config
 
+# Set permissions on the log directory
+chown -R nobody:users /var/log
+chmod -R 775 /var/log
+
 # Check e-mail setting
 if [ -z "${MAILTO}" ]; then
     echo "The \$MAILTO environment variable is not set, skip e-mail notification."
