@@ -15,6 +15,8 @@ COPY script/* /usr/local/bin/
 
 ADD supervisor/*.conf /etc/supervisor/conf.d/
 
+ADD config/ /config_orig
+
 EXPOSE 8081
  
 VOLUME ["/var/lib/motion"]

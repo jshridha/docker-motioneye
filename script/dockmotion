@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# Check for configuration directory
+
+if [ ! -d /config ]; then
+	mkdir -p /config
+fi
+
+# Check for motion.conf config file
+if [ ! -f /config/motion.conf ]; then
+	cp /config_orig/motion.conf /config/motion.conf
+fi
+
 # Check e-mail setting
 if [ -z "${MAILTO}" ]; then
     echo "The \$MAILTO environment variable is not set, skip e-mail notification."
@@ -18,6 +29,10 @@ if [ -n "${MOTION_PIXELS}" ]; then
     HEIGHT=${wxh[1]}
     sed -i "s/^width\s[0-9]\+/width ${WIDTH}/g" /etc/motion/motion.conf
     sed -i "s/^height\s[0-9]\+/height ${HEIGHT}/g" /etc/motion/motion.conf
+fi
+
+if [ ! -f /etc/motion/motion.conf ]; then
+	ln -sf /config/motion.conf /etc/
 fi
 
 # Override threshold, event_gap for Motion
@@ -46,4 +61,4 @@ fi
 echo 'set realname="Motion Detector"' > /root/.muttrc
 
 # Run motion
-/usr/bin/supervisord -c /etc/supervisor/supervisord.conf
+exec motion
