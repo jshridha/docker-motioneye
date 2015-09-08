@@ -38,5 +38,4 @@ WORKDIR /var/lib/motion
 RUN usermod -u 99 nobody && \
 usermod -g 100 nobody
 
-
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+CMD ["/usr/local/bin/dockermotion"]

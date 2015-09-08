@@ -70,4 +70,4 @@ fi
 echo 'set realname="Motion Detector"' > /root/.muttrc
 
 # Run motion
-exec motion
+/usr/bin/supervisord -c /etc/supervisor/supervisord.conf
