@@ -10,6 +10,14 @@ RUN apt-get update && apt-get install -q -y --no-install-recommends \
     x264 \
 	supervisor
 
+RUN add-apt-repository -y ppa:kirillshkrogalev/ffmpeg-next && \
+	apt-get update && \
+	apt-get install ffmpeg v4l-utils python-pip python-dev libssl-dev libcurl4-openssl-dev libjpeg-dev
+	
+RUN pip install motioneye
+
+RUN mkdir -p /var/lib/motioneye
+	
 # Copy and scripts
 COPY script/* /usr/local/bin/ 
 

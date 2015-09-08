@@ -11,6 +11,11 @@ if [ ! -f /config/motion.conf ]; then
 	cp /config_orig/motion.conf /config/motion.conf
 fi
 
+# Check for the motioneye config file
+if [ ! -f /config/motioneye.conf ]; then
+	cp /usr/local/share/motioneye/extra/motioneye.conf.sample /config/motioneye.conf
+fi
+
 # Check e-mail setting
 if [ -z "${MAILTO}" ]; then
     echo "The \$MAILTO environment variable is not set, skip e-mail notification."
