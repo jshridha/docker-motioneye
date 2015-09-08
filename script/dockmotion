@@ -40,8 +40,8 @@ if [ -n "${MOTION_PIXELS}" ]; then
     sed -i "s/^height\s[0-9]\+/height ${HEIGHT}/g" /etc/motion/motion.conf
 fi
 
-if [ ! -f /etc/motion/motion.conf ]; then
-	ln -sf /config/motion.conf /etc/
+if [ ! -L /etc/motion/motion.conf ]; then
+	ln -sf /config/motion.conf /etc/motion/motion.conf
 fi
 
 # Override threshold, event_gap for Motion
