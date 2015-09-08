@@ -38,7 +38,5 @@ WORKDIR /var/lib/motion
 RUN usermod -u 99 nobody && \
 usermod -g 100 nobody
 
-RUN chown -R nobody:users /config && \
-	chmod -R 775 /config
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
