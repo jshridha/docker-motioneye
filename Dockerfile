@@ -18,5 +18,8 @@ EXPOSE 8081
 VOLUME ["/var/lib/motion"]
  
 WORKDIR /var/lib/motion
+
+RUN usermod -u 99 nobody && \
+usermod -g 100 nobody
  
 ENTRYPOINT ["/usr/local/bin/dockmotion"]
