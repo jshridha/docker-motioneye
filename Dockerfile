@@ -1,6 +1,6 @@
-FROM debian:jessie
+FROM phusion/baseimage:0.9.17
 
-MAINTAINER kfei <kfei@kfei.net>
+MAINTAINER jshridha <jshridha@gmail.com>
 
 RUN apt-get update && apt-get install -q -y --no-install-recommends \
     bsd-mailx \
