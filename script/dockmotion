@@ -16,13 +16,21 @@ if [ ! -f /config/motioneye.conf ]; then
 	cp /usr/local/share/motioneye/extra/motioneye.conf.sample /config/motioneye.conf
 fi
 
+if [ ! -d /home/nobody/motioneye/conf ]; then
+	mkdir -p /home/nobody/motioneye/{conf,log,run,media}
+	chown -R nobody:users /home/nobody
+	chmod -R 775 /home/nobody
+	sed -i '/conf_path.*/c\conf_path /home/nobody/motioneye/conf' /config/motioneye.conf
+	sed -i '/log_path.*/c\log_path /home/nobody/motioneye/log' /config/motioneye.conf
+	sed -i '/run_path.*/c\run_path /home/nobody/motioneye/run' /config/motioneye.conf
+	sed -i '/media_path.*/c\media_path /home/nobody/motioneye/media' /config/motioneye.conf
+	ln -sf /config/motion.conf /home/nobody/motioneye/conf/motion.conf
+	ln -sf /config/motioneye.conf /home/nobody/motioneye/conf/motioneye.conf
+fi
+
 # Set permissions on the config directory
 chown -R nobody:users /config
 chmod -R 775 /config
-
-# Set permissions on the log directory
-chown -R nobody:users /var/log
-chmod -R 775 /var/log
 
 # Check e-mail setting
 if [ -z "${MAILTO}" ]; then
