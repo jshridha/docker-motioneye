@@ -27,7 +27,7 @@ ADD supervisor/*.conf /etc/supervisor/conf.d/
 
 ADD config/ /config_orig
 
-EXPOSE 8081
+EXPOSE 8081 8765
  
 VOLUME ["/var/lib/motion"]
 
