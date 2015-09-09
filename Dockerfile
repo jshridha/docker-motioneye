@@ -33,6 +33,8 @@ EXPOSE 8081 8765
 VOLUME ["/var/lib/motion"]
 
 VOLUME ["/config"]
+
+VOLUME ["/home/nobody/motioneye"]
  
 WORKDIR /var/lib/motion
 
