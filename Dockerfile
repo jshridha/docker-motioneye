@@ -22,6 +22,7 @@ RUN mkdir -p /var/lib/motioneye
 	
 # Copy and scripts
 COPY script/* /usr/local/bin/ 
+RUN chmod +x /usr/local/bin/*
 
 ADD supervisor/*.conf /etc/supervisor/conf.d/
 
