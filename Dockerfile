@@ -38,4 +38,4 @@ WORKDIR /var/lib/motion
 RUN usermod -u 99 nobody && \
 usermod -g 100 nobody
 
-CMD ["/usr/local/bin/dockermotion"]
+CMD ["/usr/local/bin/dockmotion"]
