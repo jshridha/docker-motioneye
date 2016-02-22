@@ -4,25 +4,42 @@ MAINTAINER jshridha <jshridha@gmail.com>
 
 RUN apt-get update && apt-get install -q -y --no-install-recommends \
     bsd-mailx \
-    motion \
+#    motion \
+    git \
     mutt \
     ssmtp \
     x264 \
-	supervisor
+    supervisor \
+    autoconf \
+    automake \
+    pkgconf \
+    libtool \
+    libjpeg8-dev \
+    libjpeg-dev \
+    build-essential \
+    libzip-dev \
+	libavformat-dev \
+	libavcodec-dev \
+	libswscale-dev \
+    python-dev && \
+    apt-get -y clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN add-apt-repository -y ppa:kirillshkrogalev/ffmpeg-next && \
 	apt-get update && \
-	apt-get install -q -y --no-install-recommends ffmpeg v4l-utils python-pip python-dev libssl-dev libcurl4-openssl-dev libjpeg-dev
-
-RUN apt-get install -q -y --no-install-recommends build-essential python-dev
+	apt-get install -q -y --no-install-recommends ffmpeg v4l-utils python-pip python-dev libssl-dev libcurl4-openssl-dev libjpeg-dev && \
+	apt-get -y clean && \
+	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 	
-RUN pip install motioneye
-
 RUN mkdir -p /var/lib/motioneye
 	
 # Copy and scripts
 COPY script/* /usr/local/bin/ 
 RUN chmod +x /usr/local/bin/*
+
+RUN /usr/local/bin/installMotion.sh
+
+RUN pip install motioneye
 
 ADD supervisor/*.conf /etc/supervisor/conf.d/
 
