@@ -48,8 +48,8 @@ if [ -n "${MOTION_PIXELS}" ]; then
     IFS='x' read -a wxh<<< "${MOTION_PIXELS}"
     WIDTH=${wxh[0]}
     HEIGHT=${wxh[1]}
-    sed -i "s/^width\s[0-9]\+/width ${WIDTH}/g" /etc/motion/motion.conf
-    sed -i "s/^height\s[0-9]\+/height ${HEIGHT}/g" /etc/motion/motion.conf
+    sed -i "s/^width\s[0-9]\+/width ${WIDTH}/g" /config/motion.conf
+    sed -i "s/^height\s[0-9]\+/height ${HEIGHT}/g" /config/motion.conf
 fi
 
 if [ ! -L /etc/motion/motion.conf ]; then
@@ -73,9 +73,9 @@ if [ -n "${MOTION_TIMELAPSE}" ]; then
     # Send the timer to background
     /usr/local/bin/timelapse.sh ${ofile} ${interval} ${duration} &
     # Settings for running Motion on time-lapse mode
-    sed -i "s/^threshold\s[0-9]\+/threshold 0/g" /etc/motion/motion.conf
-    sed -i "s/^ffmpeg_output_movies off/ffmpeg_output_movies on/g" /etc/motion/motion.conf
-    sed -i "s/^ffmpeg_timelapse\s[0-9]\+/ffmpeg_timelapse ${interval}/g" /etc/motion/motion.conf
+    sed -i "s/^threshold\s[0-9]\+/threshold 0/g" /config/motion.conf
+    sed -i "s/^ffmpeg_output_movies off/ffmpeg_output_movies on/g" /config/motion.conf
+    sed -i "s/^ffmpeg_timelapse\s[0-9]\+/ffmpeg_timelapse ${interval}/g" /config/motion.conf
 fi
 
 # Set the sender's name in notify email
