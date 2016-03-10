@@ -8,7 +8,7 @@ fi
 
 # Check for motion.conf config file
 if [ ! -f /config/motion.conf ]; then
-	cp /config_orig/motion.conf /config/motion.conf
+	cp /usr/local/etc/motion-dist.conf /config/motion.conf
 fi
 
 # Check for the motioneye config file
@@ -50,10 +50,6 @@ if [ -n "${MOTION_PIXELS}" ]; then
     HEIGHT=${wxh[1]}
     sed -i "s/^width\s[0-9]\+/width ${WIDTH}/g" /config/motion.conf
     sed -i "s/^height\s[0-9]\+/height ${HEIGHT}/g" /config/motion.conf
-fi
-
-if [ ! -L /etc/motion/motion.conf ]; then
-	ln -sf /config/motion.conf /etc/motion/motion.conf
 fi
 
 # Override threshold, event_gap for Motion
