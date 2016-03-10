@@ -8,7 +8,7 @@ fi
 
 # Check for motion.conf config file
 if [ ! -f /config/motion.conf ]; then
-	cp /usr/local/etc/motion-dist.conf /config/motion.conf
+	cp /usr/local/etc/motion/motion-dist.conf /config/motion.conf
 fi
 
 # Check for the motioneye config file
