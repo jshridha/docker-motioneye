@@ -16,6 +16,10 @@ if [ ! -f /config/motioneye.conf ]; then
 	cp /usr/local/share/motioneye/extra/motioneye.conf.sample /config/motioneye.conf
 fi
 
+if [ ! -L /usr/local/etc/motion/motion.conf ]; then
+	ln -sf /config/motion.conf /usr/local/etc/motion/motion.conf
+fi
+
 if [ ! -d /home/nobody/motioneye/conf ]; then
 	mkdir -p /home/nobody/motioneye/{conf,log,run,media}
 	chown -R nobody:users /home/nobody
