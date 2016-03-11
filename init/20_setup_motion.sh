@@ -1,27 +1,26 @@
 #!/bin/bash
 
 # Check for configuration directory
-
 if [ ! -d /config ]; then
-	mkdir -p /config
+        mkdir -p /config
 fi
 
 # Check for motion.conf config file
 if [ ! -f /config/motion.conf ]; then
-	cp /usr/local/etc/motion/motion-dist.conf /config/motion.conf
+        cp /usr/local/etc/motion/motion-dist.conf /config/motion.conf
 fi
 
 # Check for the motioneye config file
 if [ ! -f /config/motioneye.conf ]; then
-	cp /usr/local/share/motioneye/extra/motioneye.conf.sample /config/motioneye.conf
+        cp /usr/local/share/motioneye/extra/motioneye.conf.sample /config/motioneye.conf
 fi
 
 if [ ! -d /home/nobody/motioneye/conf ]; then
-	mkdir -p /home/nobody/motioneye/{conf,log,run,media}
-	chown -R nobody:users /home/nobody
-	chmod -R 775 /home/nobody
-	ln -sf /config/motion.conf /home/nobody/motioneye/conf/motion.conf
-	ln -sf /config/motioneye.conf /home/nobody/motioneye/conf/motioneye.conf
+        mkdir -p /home/nobody/motioneye/{conf,log,run,media}
+        chown -R nobody:users /home/nobody
+        chmod -R 775 /home/nobody
+        ln -sf /config/motion.conf /home/nobody/motioneye/conf/motion.conf
+        ln -sf /config/motioneye.conf /home/nobody/motioneye/conf/motioneye.conf
 fi
 
 # Fix settings in motion and motioneye
@@ -33,6 +32,3 @@ sed -i '/media_path.*/c\media_path /home/nobody/motioneye/media' /config/motione
 # Set permissions on the config directory
 chown -Rv nobody:users /config
 chmod -Rv 775 /config
-
-# Run motion
-/usr/bin/supervisord -c /etc/supervisor/supervisord.conf

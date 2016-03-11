@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -q -y --no-install-recommends \
     mutt \
     ssmtp \
     x264 \
-    supervisor \
+#    supervisor \
     autoconf \
     automake \
     pkgconf \
@@ -41,7 +41,7 @@ RUN /usr/local/bin/installMotion.sh
 
 RUN pip install motioneye
 
-ADD supervisor /etc/supervisor
+#ADD supervisor /etc/supervisor
 
 EXPOSE 8081 8765
  
@@ -52,4 +52,8 @@ WORKDIR /var/lib/motion
 RUN usermod -u 99 nobody && \
 usermod -g 100 nobody
 
-CMD ["/usr/local/bin/dockmotioneye"]
+#CMD ["/usr/local/bin/dockmotioneye"]
+ADD init/ /etc/my_init.d/
+ADD services /etc/service
+RUN chmod -v +x /etc/service/*/run /etc/service/*/finish /etc/my_init.d/*.sh
+

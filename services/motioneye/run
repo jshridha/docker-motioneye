@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Run motion
+exec /sbin/setuser nobody /usr/local/bin/meyectl startserver -c /config/motioneye.conf
