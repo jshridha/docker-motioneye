@@ -41,8 +41,7 @@ RUN /usr/local/bin/installMotion.sh
 
 RUN pip install motioneye
 
-ADD supervisor/*.conf /etc/supervisor/conf.d/
-#ADD supervisor/supervisord.conf /etc/supervisor/supervisor.conf
+ADD supervisor /etc/supervisor
 
 ADD config/ /config_orig
 
