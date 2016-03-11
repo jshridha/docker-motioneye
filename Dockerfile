@@ -43,16 +43,10 @@ RUN pip install motioneye
 
 ADD supervisor /etc/supervisor
 
-ADD config/ /config_orig
-
 EXPOSE 8081 8765
  
-VOLUME ["/var/lib/motion"]
+VOLUME ["/var/lib/motion", "/config", "/home/nobody/motioneye"]
 
-VOLUME ["/config"]
-
-VOLUME ["/home/nobody/motioneye"]
- 
 WORKDIR /var/lib/motion
 
 RUN usermod -u 99 nobody && \
