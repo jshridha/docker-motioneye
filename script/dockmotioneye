@@ -32,51 +32,5 @@ fi
 chown -R nobody:users /config
 chmod -R 775 /config
 
-# Check e-mail setting
-if [ -z "${MAILTO}" ]; then
-    echo "The \$MAILTO environment variable is not set, skip e-mail notification."
-fi
-echo "here"
-# Set the correct timezone
-if [ -n "${TIMEZONE}" ]; then
-    echo "Setting the timezone"
-    cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
-fi
-echo "here2"
-# Override capture size for Motion
-if [ -n "${MOTION_PIXELS}" ]; then
-    echo "Set capture size to ${MOTION_PIXELS}"
-    IFS='x' read -a wxh<<< "${MOTION_PIXELS}"
-    WIDTH=${wxh[0]}
-    HEIGHT=${wxh[1]}
-    sed -i "s/^width\s[0-9]\+/width ${WIDTH}/g" /config/motion.conf
-    sed -i "s/^height\s[0-9]\+/height ${HEIGHT}/g" /config/motion.conf
-fi
-echo "here3"
-# Override threshold, event_gap for Motion
-[ -n "${MOTION_THRESHOLD}" ] && \
-    sed -i "s/^threshold\s[0-9]\+/threshold ${MOTION_THRESHOLD}/g" /config/motion.conf
-[ -n "${MOTION_EVENT_GAP}" ] && \
-    sed -i "s/^event_gap\s[0-9]\+/event_gap ${MOTION_EVENT_GAP}/g" /config/motion.conf
-echo "here4"
-# Timelapse mode
-if [ -n "${MOTION_TIMELAPSE}" ]; then
-    IFS=',' read -a timelapse<<< "${MOTION_TIMELAPSE}"
-    interval=${timelapse[0]}
-    duration=${timelapse[1]}
-    ofile="/tmp/timelapse-start-time.log"
-    # Record the time-lapse start time
-    echo $(date +"%s") > ${ofile}
-    # Send the timer to background
-    /usr/local/bin/timelapse.sh ${ofile} ${interval} ${duration} &
-    # Settings for running Motion on time-lapse mode
-    sed -i "s/^threshold\s[0-9]\+/threshold 0/g" /config/motion.conf
-    sed -i "s/^ffmpeg_output_movies off/ffmpeg_output_movies on/g" /config/motion.conf
-    sed -i "s/^ffmpeg_timelapse\s[0-9]\+/ffmpeg_timelapse ${interval}/g" /config/motion.conf
-fi
-echo "here5"
-# Set the sender's name in notify email
-echo 'set realname="Motion Detector"' > /root/.muttrc
-echo "here6"
 # Run motion
 /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
