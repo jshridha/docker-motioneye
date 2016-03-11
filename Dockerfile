@@ -4,7 +4,7 @@ MAINTAINER jshridha <jshridha@gmail.com>
 
 RUN apt-get update && apt-get install -q -y --no-install-recommends \
     bsd-mailx \
-    motion \
+#    motion \
     git \
     mutt \
     ssmtp \
@@ -37,7 +37,7 @@ RUN mkdir -p /var/lib/motioneye
 COPY script/* /usr/local/bin/ 
 RUN chmod +x /usr/local/bin/*
 
-#RUN /usr/local/bin/installMotion.sh
+RUN /usr/local/bin/installMotion.sh
 
 RUN pip install motioneye
 
