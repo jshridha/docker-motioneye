@@ -2,7 +2,7 @@ FROM phusion/baseimage:0.9.18
 
 MAINTAINER jshridha <jshridha@gmail.com>
 
-ENV MOTIONEYE_VERSION=0.32.1
+ENV MOTIONEYE_VERSION=0.33.2
 
 RUN apt-get update && apt-get install -q -y --no-install-recommends \
     bsd-mailx \
@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -q -y --no-install-recommends \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN add-apt-repository -y ppa:kirillshkrogalev/ffmpeg-next && \
+RUN add-apt-repository -y ppa:mc3man/trusty-media && \
 	apt-get update && \
 	apt-get install -q -y --no-install-recommends ffmpeg v4l-utils python-pip python-dev libssl-dev libcurl4-openssl-dev libjpeg-dev && \
 	apt-get -y clean && \
