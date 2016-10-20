@@ -51,9 +51,6 @@ VOLUME ["/var/lib/motion", "/config", "/home/nobody/motioneye"]
 
 WORKDIR /var/lib/motion
 
-RUN usermod -u 99 nobody && \
-usermod -g 100 nobody
-
 #CMD ["/usr/local/bin/dockmotioneye"]
 ADD init/ /etc/my_init.d/
 ADD services /etc/service
