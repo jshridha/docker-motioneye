@@ -47,9 +47,9 @@ RUN pip install motioneye==$MOTIONEYE_VERSION
 
 EXPOSE 8081 8765
  
-VOLUME ["/var/lib/motion", "/config", "/home/nobody/motioneye"]
+VOLUME ["/config", "/home/nobody/motioneye"]
 
-WORKDIR /var/lib/motion
+WORKDIR /home/nobody/motioneye
 
 RUN usermod -g users nobody
 
