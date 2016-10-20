@@ -30,5 +30,6 @@ sed -i '/run_path.*/c\run_path /home/nobody/motioneye/run' /config/motioneye.con
 sed -i '/media_path.*/c\media_path /home/nobody/motioneye/media' /config/motioneye.conf
 
 # Set permissions on the config directory
-chown -Rv nobody:users /config
-chmod -Rv 775 /config
+echo "Fixing permissions"
+chown -R nobody:users /config /home/nobody/motioneye/media
+chmod -R 775 /config

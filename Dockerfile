@@ -2,7 +2,7 @@ FROM phusion/baseimage:0.9.18
 
 MAINTAINER jshridha <jshridha@gmail.com>
 
-ENV MOTIONEYE_VERSION=0.33.2
+ENV MOTIONEYE_VERSION=0.33.4
 
 RUN apt-get update && apt-get install -q -y --no-install-recommends \
     bsd-mailx \
@@ -47,15 +47,14 @@ RUN pip install motioneye==$MOTIONEYE_VERSION
 
 EXPOSE 8081 8765
  
-VOLUME ["/var/lib/motion", "/config", "/home/nobody/motioneye"]
+VOLUME ["/config", "/home/nobody/motioneye"]
 
-WORKDIR /var/lib/motion
+WORKDIR /home/nobody/motioneye
 
-RUN usermod -u 99 nobody && \
-usermod -g 100 nobody
+RUN usermod -g users nobody
 
 #CMD ["/usr/local/bin/dockmotioneye"]
-ADD init/ /etc/my_init.d/
+ADD init/*.sh /etc/my_init.d/
 ADD services /etc/service
 RUN chmod -v +x /etc/service/*/run /etc/service/*/finish /etc/my_init.d/*.sh
 
