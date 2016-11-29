@@ -39,8 +39,6 @@ RUN mkdir -p /var/lib/motioneye
 COPY script/* /usr/local/bin/ 
 RUN chmod +x /usr/local/bin/*
 
-RUN /usr/local/bin/installMotion.sh
-
 RUN pip install motioneye==$MOTIONEYE_VERSION
 
 #ADD supervisor /etc/supervisor

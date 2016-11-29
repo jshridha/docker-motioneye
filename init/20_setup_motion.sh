@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Check if motion is installed
+[ -f "/usr/local/bin/motion" ] && echo "Motion is already installed" || /usr/local/bin/installMotion.sh
+
 # Check for configuration directory
 if [ ! -d /config ]; then
         mkdir -p /config
