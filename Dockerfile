@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -q -y --no-install-recommends \
 	libavformat-dev \
 	libavcodec-dev \
 	libswscale-dev \
+    libavdevice-dev \
     python-dev && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
