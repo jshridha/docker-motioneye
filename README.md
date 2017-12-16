@@ -36,9 +36,9 @@ docker run -d --name=motioneye \
     --device=/dev/video0
     -p 8081:8081 \
     -p 8765:8765 \
-    -e TIMEZONE="America/New_York" \
     -e PUID="99" \
     -e PGID="100" \
+    -v /etc/localtime:/etc/localtime:ro \
     -v /mnt/user/appdata/motioneye/media:/home/nobody/media \
     -v /mnt/user/appdata/motioneye/config:/config \
     jshridha/motioneye:latest
