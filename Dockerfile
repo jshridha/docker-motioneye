@@ -1,6 +1,6 @@
-FROM phusion/baseimage:0.9.18
+FROM resin/raspberry-pi-buildpack-deps
 
-MAINTAINER jshridha <jshridha@gmail.com>
+MAINTAINER ptitvlimeux <ptitvlimeux@hotmail.com>
 
 ENV MOTIONEYE_VERSION=0.36.1
 
