@@ -33,7 +33,7 @@ docker pull jshridha/motioneye:latest
 Run the container with configs , e.g.,
 ```bash
 docker run -d --name=motioneye \
-    --device=/dev/video0
+    --device=/dev/video0 \
     -p 8081:8081 \
     -p 8765:8765 \
     -e TIMEZONE="America/New_York" \
