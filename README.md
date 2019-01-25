@@ -39,7 +39,7 @@ docker run -d --name=motioneye \
     -e TIMEZONE="America/New_York" \
     -e PUID="99" \
     -e PGID="100" \
-    -v /mnt/user/appdata/motioneye/media:/home/nobody/media \
+    -v /mnt/user/appdata/motioneye/media:/home/nobody/motioneye/media \
     -v /mnt/user/appdata/motioneye/config:/config \
     jshridha/motioneye:latest
 ```
